@@ -63,8 +63,8 @@
       <widget class="QPushButton" name="comPortButton">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>60</y>
+         <x>70</x>
+         <y>50</y>
          <width>75</width>
          <height>24</height>
         </rect>

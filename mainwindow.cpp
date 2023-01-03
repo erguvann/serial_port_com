@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("Serial Port Com");
+    getComPorts();
 }
 
 MainWindow::~MainWindow()
@@ -26,7 +27,17 @@ void MainWindow::on_send_button_clicked()
 
 void MainWindow::on_comPortButton_clicked()
 {
+    getComPorts();
+}
+
+void MainWindow::getComPorts()
+{
+    ui->comPortBox->clear();
     QList<QSerialPortInfo> list = QSerialPortInfo::availablePorts();
+
+    if(list.isEmpty())
+        ui->comPortBox->addItem("No Port Detected");
+
     QList<QString> portList;
 
     for(int i=0; i<list.length(); i++)
