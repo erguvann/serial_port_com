@@ -6,31 +6,74 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>754</width>
-    <height>555</height>
+    <width>636</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QPlainTextEdit" name="chat_box"/>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLineEdit" name="message_line"/>
+       <widget class="QPlainTextEdit" name="chat_box"/>
       </item>
       <item>
-       <widget class="QPushButton" name="send_button">
-        <property name="text">
-         <string>SEND</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="message_line"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="send_button">
+          <property name="text">
+           <string>SEND</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Settings</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <widget class="QComboBox" name="comPortBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="comPortButton">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>60</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -39,7 +82,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>754</width>
+     <width>636</width>
      <height>22</height>
     </rect>
    </property>

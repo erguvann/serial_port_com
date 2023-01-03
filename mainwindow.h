@@ -18,6 +18,9 @@ public:
 private slots:
     void on_send_button_clicked();
 
+
+    void on_comPortButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
