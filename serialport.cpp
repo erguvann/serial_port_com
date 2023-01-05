@@ -1,5 +1,6 @@
 #include "serialport.h"
 
+
 SerialPort::SerialPort()
 {
     setBaudRate(BaudRate::Baud9600);
@@ -8,7 +9,6 @@ SerialPort::SerialPort()
     setParity(Parity::NoParity);
     setFlowControl(FlowControl::NoFlowControl);
     setPortName(portPath);
-
 }
 
 const QString &SerialPort::getPortPath() const

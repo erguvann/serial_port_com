@@ -2,7 +2,9 @@
 #include "ui_mainwindow.h"
 #include <QSerialPortInfo>
 #include <QStringList>
-//#include <QDebug>
+#include <QDebug>
+#include <iostream>
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Serial Port Com");
     getComPorts();
+    serial = new SerialPort;
+    connect(serial,SIGNAL(readyRead()),this,SLOT(readData()));
 }
 
 MainWindow::~MainWindow()
@@ -22,7 +26,11 @@ void MainWindow::on_send_button_clicked()
 {
     ui->chat_box->appendPlainText(ui->message_line->text());
     ui->message_line->clear();
+}
 
+void MainWindow::readData()
+{
+    ui->chat_box->appendPlainText(serial->readAll());
 }
 
 void MainWindow::on_comPortButton_clicked()
@@ -33,7 +41,7 @@ void MainWindow::on_comPortButton_clicked()
 void MainWindow::getComPorts()
 {
     ui->comPortBox->clear();
-    QList<QSerialPortInfo> list = QSerialPortInfo::availablePorts();
+    list = QSerialPortInfo::availablePorts();
 
     if(list.isEmpty())
         ui->comPortBox->addItem("No Port Detected");
@@ -46,3 +54,31 @@ void MainWindow::getComPorts()
     }
     ui->comPortBox->addItems(portList);
 }
+
+void MainWindow::on_connectButton_clicked()
+{ 
+    int index = -1;
+    for(int i=0; i<list.length(); i++)
+    {
+        if(list[i].portName() == ui->comPortBox->currentText())
+        {
+            index = i;
+            //std::cout << i << std::endl;
+            break;
+        }
+    }
+    if(index != -1)
+        serial->setPort(list[index]);
+    else
+        ui->chat_box->appendPlainText("portInfo eşleşmedi");
+
+    //QDebug << *(serial->getPortPath());
+    int portOpen = serial->open(QIODeviceBase::ReadWrite);
+    if(portOpen)
+        ui->chat_box->appendPlainText("port açıldı");
+    else
+        ui->chat_box->appendPlainText("port açma hatası");
+}
+
+
+
