@@ -86,9 +86,6 @@ void MainWindow::on_baudRateBox_currentIndexChanged(int index)
 {
     switch(index)
     {
-        case 0:
-            // hata mesajı yaz
-            break;
         case 1:
             serial->setBaudRate(SerialPort::BaudRate::Baud1200);
             break;
