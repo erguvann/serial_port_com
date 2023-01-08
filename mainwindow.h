@@ -23,6 +23,8 @@ private slots:
     void on_comPortButton_clicked();
     void on_connectButton_clicked();
 
+    void on_baudRateBox_currentIndexChanged(int index);
+
 private:
     QList<QSerialPortInfo> list;
     SerialPort* serial;

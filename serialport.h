@@ -10,9 +10,12 @@ public:
 
     const QString &getPortPath() const;
     void setPortPath(const QString &newPortPath);
+    void createLists(void);
+    QList<QString> baudRateList;
 
 private:
     QString portPath;
+
 };
 
 #endif // SERIALPORT_H

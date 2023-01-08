@@ -57,7 +57,7 @@
           <widget class="QComboBox" name="comPortBox"/>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="comPortButton">
              <property name="text">

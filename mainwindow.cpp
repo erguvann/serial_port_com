@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     getComPorts();
     serial = new SerialPort;
     connect(serial,SIGNAL(readyRead()),this,SLOT(readData()));
+    ui->baudRateBox->addItems(serial->baudRateList);
+    ui->baudRateBox->setCurrentIndex(4);
 }
 
 MainWindow::~MainWindow()
@@ -70,7 +72,7 @@ void MainWindow::on_connectButton_clicked()
     if(index != -1)
         serial->setPort(list[index]);
     else
-        ui->chat_box->appendPlainText("portInfo eşleşmedi");
+        ui->chat_box->appendPlainText("Error: Selected port cannot be found! Please refresh port list");
 
     //QDebug << *(serial->getPortPath());
     int portOpen = serial->open(QIODeviceBase::ReadWrite);
@@ -80,5 +82,37 @@ void MainWindow::on_connectButton_clicked()
         ui->chat_box->appendPlainText("port açma hatası");
 }
 
-
+void MainWindow::on_baudRateBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            // hata mesajı yaz
+            break;
+        case 1:
+            serial->setBaudRate(SerialPort::BaudRate::Baud1200);
+            break;
+        case 2:
+            serial->setBaudRate(SerialPort::BaudRate::Baud2400);
+            break;
+        case 3:
+            serial->setBaudRate(SerialPort::BaudRate::Baud4800);
+            break;
+        case 4:
+            serial->setBaudRate(SerialPort::BaudRate::Baud9600);
+            break;
+        case 5:
+            serial->setBaudRate(SerialPort::BaudRate::Baud19200);
+            break;
+        case 6:
+            serial->setBaudRate(SerialPort::BaudRate::Baud38400);
+            break;
+        case 7:
+            serial->setBaudRate(SerialPort::BaudRate::Baud57600);
+            break;
+        case 8:
+            serial->setBaudRate(SerialPort::BaudRate::Baud115200);
+            break;
+    }
+}
 
