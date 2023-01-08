@@ -15,17 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     getComPorts();
     serial = new SerialPort;
     connect(serial,SIGNAL(readyRead()),this,SLOT(readData()));
-
-    ui->baudRateBox->addItems(serial->baudRateList);
-    ui->dataBitBox->addItems(serial->dataBitList);
-    ui->stopBitBox->addItems(serial->stopBitList);
-    ui->parityBox->addItems(serial->parityList);
-    ui->flowControlBox->addItems(serial->flowControlList);
-    ui->baudRateBox->setCurrentIndex(3);
-    ui->dataBitBox->setCurrentIndex(3);
-    ui->stopBitBox->setCurrentIndex(0);
-    ui->parityBox->setCurrentIndex(0);
-    ui->flowControlBox->setCurrentIndex(0);
+    setDefaultSerialParameters();
 }
 
 MainWindow::~MainWindow()
@@ -74,7 +64,6 @@ void MainWindow::on_connectButton_clicked()
         if(list[i].portName() == ui->comPortBox->currentText())
         {
             index = i;
-            //std::cout << i << std::endl;
             break;
         }
     }
@@ -83,12 +72,11 @@ void MainWindow::on_connectButton_clicked()
     else
         ui->chat_box->appendPlainText("Error: Selected port cannot be found! Please refresh port list");
 
-    //QDebug << *(serial->getPortPath());
     int portOpen = serial->open(QIODeviceBase::ReadWrite);
     if(portOpen)
-        ui->chat_box->appendPlainText("port açıldı");
+        ui->chat_box->appendPlainText("Selected port is now open");
     else
-        ui->chat_box->appendPlainText("port açma hatası");
+        ui->chat_box->appendPlainText("Error: cannot open selected port");
 }
 
 void MainWindow::on_baudRateBox_currentIndexChanged(int index)
@@ -195,3 +183,17 @@ void MainWindow::on_flowControlBox_currentIndexChanged(int index)
     }
 }
 
+void MainWindow::setDefaultSerialParameters()
+{
+    ui->baudRateBox->addItems(serial->baudRateList);
+    ui->dataBitBox->addItems(serial->dataBitList);
+    ui->stopBitBox->addItems(serial->stopBitList);
+    ui->parityBox->addItems(serial->parityList);
+    ui->flowControlBox->addItems(serial->flowControlList);
+
+    ui->baudRateBox->setCurrentIndex(3);
+    ui->dataBitBox->setCurrentIndex(3);
+    ui->stopBitBox->setCurrentIndex(0);
+    ui->parityBox->setCurrentIndex(0);
+    ui->flowControlBox->setCurrentIndex(0);
+}

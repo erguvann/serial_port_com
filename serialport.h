@@ -11,6 +11,7 @@ public:
     const QString &getPortPath() const;
     void setPortPath(const QString &newPortPath);
     void createLists(void);
+
     QList<QString> baudRateList;
     QList<QString> dataBitList;
     QList<QString> stopBitList;

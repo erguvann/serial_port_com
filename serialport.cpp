@@ -2,11 +2,6 @@
 
 SerialPort::SerialPort()
 {
-    setBaudRate(BaudRate::Baud9600);
-    setDataBits(DataBits::Data8);
-    setStopBits(StopBits::OneStop);
-    setParity(Parity::NoParity);
-    setFlowControl(FlowControl::NoFlowControl);
     setPortName(portPath);
     createLists();
 }

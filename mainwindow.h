@@ -22,15 +22,11 @@ private slots:
     void readData();
     void on_comPortButton_clicked();
     void on_connectButton_clicked();
-
+    void setDefaultSerialParameters(void);
     void on_baudRateBox_currentIndexChanged(int index);
-
     void on_dataBitBox_currentIndexChanged(int index);
-
     void on_stopBitBox_currentIndexChanged(int index);
-
     void on_parityBox_currentIndexChanged(int index);
-
     void on_flowControlBox_currentIndexChanged(int index);
 
 private:
