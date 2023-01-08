@@ -15,8 +15,17 @@ MainWindow::MainWindow(QWidget *parent)
     getComPorts();
     serial = new SerialPort;
     connect(serial,SIGNAL(readyRead()),this,SLOT(readData()));
+
     ui->baudRateBox->addItems(serial->baudRateList);
-    ui->baudRateBox->setCurrentIndex(4);
+    ui->dataBitBox->addItems(serial->dataBitList);
+    ui->stopBitBox->addItems(serial->stopBitList);
+    ui->parityBox->addItems(serial->parityList);
+    ui->flowControlBox->addItems(serial->flowControlList);
+    ui->baudRateBox->setCurrentIndex(3);
+    ui->dataBitBox->setCurrentIndex(3);
+    ui->stopBitBox->setCurrentIndex(0);
+    ui->parityBox->setCurrentIndex(0);
+    ui->flowControlBox->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -86,29 +95,102 @@ void MainWindow::on_baudRateBox_currentIndexChanged(int index)
 {
     switch(index)
     {
-        case 1:
+        case 0:
             serial->setBaudRate(SerialPort::BaudRate::Baud1200);
             break;
-        case 2:
+        case 1:
             serial->setBaudRate(SerialPort::BaudRate::Baud2400);
             break;
-        case 3:
+        case 2:
             serial->setBaudRate(SerialPort::BaudRate::Baud4800);
             break;
-        case 4:
+        case 3:
             serial->setBaudRate(SerialPort::BaudRate::Baud9600);
             break;
-        case 5:
+        case 4:
             serial->setBaudRate(SerialPort::BaudRate::Baud19200);
             break;
-        case 6:
+        case 5:
             serial->setBaudRate(SerialPort::BaudRate::Baud38400);
             break;
-        case 7:
+        case 6:
             serial->setBaudRate(SerialPort::BaudRate::Baud57600);
             break;
-        case 8:
+        case 7:
             serial->setBaudRate(SerialPort::BaudRate::Baud115200);
+            break;
+    }
+}
+
+void MainWindow::on_dataBitBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            serial->setDataBits(SerialPort::DataBits::Data5);
+            break;
+        case 1:
+            serial->setDataBits(SerialPort::DataBits::Data6);
+            break;
+        case 2:
+            serial->setDataBits(SerialPort::DataBits::Data7);
+            break;
+        case 3:
+            serial->setDataBits(SerialPort::DataBits::Data8);
+            break;
+    }
+}
+
+void MainWindow::on_stopBitBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            serial->setStopBits(SerialPort::StopBits::OneStop);
+            break;
+        case 1:
+            serial->setStopBits(SerialPort::StopBits::OneAndHalfStop);
+            break;
+        case 2:
+            serial->setStopBits(SerialPort::StopBits::TwoStop);
+            break;
+    }
+}
+
+void MainWindow::on_parityBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            serial->setParity(SerialPort::Parity::NoParity);
+            break;
+        case 1:
+            serial->setParity(SerialPort::Parity::EvenParity);
+            break;
+        case 2:
+            serial->setParity(SerialPort::Parity::OddParity);
+            break;
+        case 3:
+            serial->setParity(SerialPort::Parity::SpaceParity);
+            break;
+        case 4:
+            serial->setParity(SerialPort::Parity::MarkParity);
+            break;
+    }
+}
+
+void MainWindow::on_flowControlBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            serial->setFlowControl(SerialPort::FlowControl::NoFlowControl);
+            break;
+        case 1:
+            serial->setFlowControl(SerialPort::FlowControl::HardwareControl);
+            break;
+        case 2:
+            serial->setFlowControl(SerialPort::FlowControl::SoftwareControl);
             break;
     }
 }

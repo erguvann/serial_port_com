@@ -25,6 +25,14 @@ private slots:
 
     void on_baudRateBox_currentIndexChanged(int index);
 
+    void on_dataBitBox_currentIndexChanged(int index);
+
+    void on_stopBitBox_currentIndexChanged(int index);
+
+    void on_parityBox_currentIndexChanged(int index);
+
+    void on_flowControlBox_currentIndexChanged(int index);
+
 private:
     QList<QSerialPortInfo> list;
     SerialPort* serial;
