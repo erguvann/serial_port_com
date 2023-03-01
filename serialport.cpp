@@ -46,3 +46,8 @@ void SerialPort::createLists()
     flowControlList.append("hardware");
     flowControlList.append("software");
 }
+
+void SerialPort::sendData(const char* data)
+{
+    this->writeData(data,50);
+}

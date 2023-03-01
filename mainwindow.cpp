@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <iostream>
 #include <string>
+#include <QChar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +26,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_send_button_clicked()
 {
-    ui->chat_box->appendPlainText(ui->message_line->text());
+    QString temp;
+    temp = ui->message_line->text();
+    serial->sendData(temp.toLocal8Bit().constData());
     ui->message_line->clear();
 }
 
@@ -197,3 +200,5 @@ void MainWindow::setDefaultSerialParameters()
     ui->parityBox->setCurrentIndex(0);
     ui->flowControlBox->setCurrentIndex(0);
 }
+
+

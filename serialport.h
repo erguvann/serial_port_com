@@ -18,6 +18,8 @@ public:
     QList<QString> parityList;
     QList<QString> flowControlList;
 
+    void sendData(const char* data);
+
 private:
     QString portPath;
 };
