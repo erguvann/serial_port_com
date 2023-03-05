@@ -28,6 +28,8 @@ private slots:
     void on_stopBitBox_currentIndexChanged(int index);
     void on_parityBox_currentIndexChanged(int index);
     void on_flowControlBox_currentIndexChanged(int index);
+    void on_clearButton_clicked();
+    void on_secondLineButton_clicked();
 
 private:
     QList<QSerialPortInfo> list;

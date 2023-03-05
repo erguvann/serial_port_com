@@ -204,4 +204,12 @@ void MainWindow::setDefaultSerialParameters()
     ui->flowControlBox->setCurrentIndex(0);
 }
 
+void MainWindow::on_clearButton_clicked()
+{
+    serial->clearCommand1602();
+}
 
+void MainWindow::on_secondLineButton_clicked()
+{
+    serial->secondLineCommand1602();
+}
