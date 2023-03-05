@@ -28,12 +28,15 @@ void MainWindow::on_send_button_clicked()
 {
     QString temp;
     temp = ui->message_line->text();
-    serial->sendData(temp.toLocal8Bit().constData());
+    QByteArray convertedTemp;
+    convertedTemp = temp.toLocal8Bit().constData();
+    serial->sendMessage1602(convertedTemp);
     ui->message_line->clear();
 }
 
 void MainWindow::readData()
 {
+    serial->waitForReadyRead(50);
     ui->chat_box->appendPlainText(serial->readAll());
 }
 

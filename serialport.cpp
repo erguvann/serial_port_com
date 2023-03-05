@@ -47,7 +47,9 @@ void SerialPort::createLists()
     flowControlList.append("software");
 }
 
-void SerialPort::sendData(const char* data)
+void SerialPort::sendMessage1602(QByteArray text)
 {
-    this->writeData(data,50);
+    text = text.prepend(message1602);
+    text = text.append(terminator1602);
+    this->write(text);
 }
