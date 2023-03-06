@@ -206,10 +206,16 @@ void MainWindow::setDefaultSerialParameters()
 
 void MainWindow::on_clearButton_clicked()
 {
-    serial->clearCommand1602();
+    serial->sendCommand1602(clear1602);
 }
 
 void MainWindow::on_secondLineButton_clicked()
 {
-    serial->secondLineCommand1602();
+    serial->sendCommand1602(secondLine1602);
 }
+
+void MainWindow::on_moveCursorButton_clicked()
+{
+    serial->sendCommand1602(moveCursor1602);
+}
+

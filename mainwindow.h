@@ -30,6 +30,7 @@ private slots:
     void on_flowControlBox_currentIndexChanged(int index);
     void on_clearButton_clicked();
     void on_secondLineButton_clicked();
+    void on_moveCursorButton_clicked();
 
 private:
     QList<QSerialPortInfo> list;

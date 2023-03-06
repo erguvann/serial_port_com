@@ -54,18 +54,18 @@ void SerialPort::sendMessage1602(QByteArray text)
     this->write(text);
 }
 
-void SerialPort::clearCommand1602(void)
+void SerialPort::sendCommand1602(const char commandChar)
 {
     this->command.clear();
-    this->command.append(clear1602);
+    this->command.append(commandChar);
     this->command.append(terminator1602);
     this->write(this->command);
 }
 
-void SerialPort::secondLineCommand1602(void)
+void SerialPort::sendCommand1602(char* commandString)
 {
     this->command.clear();
-    this->command.append(secondLine1602);
+    this->command.append(commandString);
     this->command.append(terminator1602);
     this->write(this->command);
 }
