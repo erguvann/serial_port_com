@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <QChar>
+#include <QButtonGroup>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Serial Port Com");
     getComPorts();
+
+    QButtonGroup settingsGroup1,settingsGroup2,settingsGroup3;
+    /*settingsGroup1 = new QButtonGroup;
+    settingsGroup2 = new QButtonGroup;
+    settingsGroup3 = new QButtonGroup;*/
+
+    settingsGroup1.addButton(ui->displayOnOffButton);
+    settingsGroup2.addButton(ui->cursorOnButton);
+    settingsGroup3.addButton(ui->blinkCursorButton);
+
     serial = new SerialPort;
     connect(serial,SIGNAL(readyRead()),this,SLOT(readData()));
     setDefaultSerialParameters();
@@ -217,5 +228,58 @@ void MainWindow::on_secondLineButton_clicked()
 void MainWindow::on_moveCursorButton_clicked()
 {
     serial->sendCommand1602(moveCursor1602);
+}
+
+void MainWindow::apply1602Settings(void)
+{
+    if(ui->displayOnOffButton->isChecked())
+    {
+        if(ui->cursorOnButton->isChecked())
+        {
+            if(ui->blinkCursorButton->isChecked())
+                serial->sendSettings1602('7');
+            else
+                serial->sendSettings1602('6');
+        }
+        else
+        {
+            if(ui->blinkCursorButton->isChecked())
+                serial->sendSettings1602('5');
+             else
+                serial->sendSettings1602('4');
+        }
+    }
+    else
+    {
+        if(ui->cursorOnButton->isChecked())
+        {
+            if(ui->blinkCursorButton->isChecked())
+                serial->sendSettings1602('3');
+            else
+                serial->sendSettings1602('2');
+        }
+        else
+        {
+            if(ui->blinkCursorButton->isChecked())
+                serial->sendSettings1602('1');
+             else
+                serial->sendSettings1602('0');
+        }
+    }
+}
+
+void MainWindow::on_displayOnOffButton_clicked()
+{
+    MainWindow::apply1602Settings();
+}
+
+void MainWindow::on_cursorOnButton_clicked()
+{
+    MainWindow::apply1602Settings();
+}
+
+void MainWindow::on_blinkCursorButton_clicked()
+{
+    MainWindow::apply1602Settings();
 }
 

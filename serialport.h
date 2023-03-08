@@ -6,7 +6,8 @@
 #define message1602 '1'
 #define clear1602 '2'
 #define secondLine1602 '3'
-#define moveCursor1602 "41"
+#define moveCursor1602 '4'
+#define options1602 '5'
 
 class SerialPort: public QSerialPort
 {
@@ -18,10 +19,8 @@ public:
     void setPortPath(const QString &newPortPath);
     void createLists(void);
     void sendMessage1602(QByteArray);
-    /*void clearCommand1602(void);
-    void secondLineCommand1602(void);*/
     void sendCommand1602(const char);
-    void sendCommand1602(char*);
+    void sendSettings1602(const char);
 
     QList<QString> baudRateList;
     QList<QString> dataBitList;

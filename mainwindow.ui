@@ -236,7 +236,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_11">
            <item>
-            <widget class="QRadioButton" name="radioButton_3">
+            <widget class="QRadioButton" name="displayOnOffButton">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -253,23 +253,23 @@
               </size>
              </property>
              <property name="text">
-              <string>RadioButton</string>
+              <string>Display On</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QRadioButton" name="radioButton_2">
+            <widget class="QRadioButton" name="cursorOnButton">
              <property name="text">
-              <string>RadioButton</string>
+              <string>Cursor On</string>
              </property>
             </widget>
            </item>
           </layout>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton">
+          <widget class="QRadioButton" name="blinkCursorButton">
            <property name="text">
-            <string>RadioButton</string>
+            <string>Blink Cursor</string>
            </property>
           </widget>
          </item>
