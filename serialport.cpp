@@ -46,3 +46,27 @@ void SerialPort::createLists()
     flowControlList.append("hardware");
     flowControlList.append("software");
 }
+
+void SerialPort::sendMessage1602(QByteArray text)
+{
+    text = text.prepend(message1602);
+    text = text.append(terminator1602);
+    this->write(text);
+}
+
+void SerialPort::sendCommand1602(const char commandChar)
+{
+    this->command.clear();
+    this->command.append(commandChar);
+    this->command.append(terminator1602);
+    this->write(this->command);
+}
+
+void SerialPort::sendSettings1602(const char selection)
+{
+    this->command.clear();
+    this->command.append(options1602);
+    this->command.append(selection);
+    this->command.append(terminator1602);
+    this->write(this->command);
+}
